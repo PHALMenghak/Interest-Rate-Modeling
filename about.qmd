@@ -1,5 +1,72 @@
 ---
-title: "About"
+title: "About the Team"
+format:
+  html:
+    toc: false
 ---
 
-About this site
+## The Project
+
+**QuantRates** was developed to explore the practical implementation of stochastic calculus in finance. Our goal is to bridge the gap between theoretical textbooks and executable Python code for bond pricing.
+
+## Meet the Team
+
+::: {.grid}
+
+<!-- MEMBER 1 -->
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+![](images/member1.png){.profile-img}
+
+### Alice Smith
+<span class="role-title">Quantitative Researcher</span>
+
+Expert in Stochastic Differential Equations and Python implementation. Alice led the development of the Vasicek simulation engine.
+
+[<i class="bi bi-github"></i>](#) &nbsp; [<i class="bi bi-linkedin"></i>](#) &nbsp; [<i class="bi bi-envelope"></i>](#)
+:::
+:::
+
+<!-- MEMBER 2 -->
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+![](images/member2.png){.profile-img}
+
+### Bob Jones
+<span class="role-title">Financial Analyst</span>
+
+Specializes in Fixed Income derivatives and Yield Curve construction. Bob calibrated the model parameters to market data.
+
+[<i class="bi bi-github"></i>](#) &nbsp; [<i class="bi bi-linkedin"></i>](#) &nbsp; [<i class="bi bi-envelope"></i>](#)
+:::
+:::
+
+<!-- MEMBER 3 -->
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+![](images/member3.png){.profile-img}
+
+### Charlie Lee
+<span class="role-title">Data Engineer</span>
+
+Responsible for the Quarto infrastructure, GitHub Actions CI/CD pipeline, and site deployment optimization.
+
+[<i class="bi bi-github"></i>](#) &nbsp; [<i class="bi bi-linkedin"></i>](#) &nbsp; [<i class="bi bi-envelope"></i>](#)
+:::
+:::
+
+<!-- MEMBER 4 -->
+::: {.g-col-12 .g-col-md-6}
+::: {.team-card}
+![](images/member3.png){.profile-img}
+
+### Charlie Lee
+<span class="role-title">Data Engineer</span>
+
+Responsible for the Quarto infrastructure, GitHub Actions CI/CD pipeline, and site deployment optimization.
+
+[<i class="bi bi-github"></i>](#) &nbsp; [<i class="bi bi-linkedin"></i>](#) &nbsp; [<i class="bi bi-envelope"></i>](#)
+:::
+:::
+
+:::

@@ -2,6 +2,8 @@
 
 A computational finance project built with [Quarto](https://quarto.org/) and Python. This website visualizes and analyzes stochastic short-rate models used in quantitative finance.
 
+Check out our project here: [Interest Rate modeling](https://phalmenghak.github.io/Interest-Rate-Modeling/)
+
 ## 📈 Models Covered
 
 1.  **Vasicek Model (1977)**

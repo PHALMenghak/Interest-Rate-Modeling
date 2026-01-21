@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs
 
 website:
   title: "Interest Rate Modeling"
@@ -27,3 +27,9 @@ format:
     toc: true
     code-fold: show
     html-math-method: mathjax
+
+execute:
+  echo: true
+  warning: false
+  message: false
+

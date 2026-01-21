@@ -1,0 +1,20 @@
+# Virtual environment
+venv/
+or_env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Quarto
+/.quarto/
+/_site/
+/_freeze/
+**/*.quarto_ipynb
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db

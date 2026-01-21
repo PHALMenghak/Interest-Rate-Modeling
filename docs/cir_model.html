@@ -198,7 +198,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#task-2-simulation-and-monte-carlo-pricing" id="toc-task-2-simulation-and-monte-carlo-pricing" class="nav-link active" data-scroll-target="#task-2-simulation-and-monte-carlo-pricing"><strong>Task 2: Simulation and Monte Carlo Pricing</strong></a></li>
+  <li><a href="#key-properties-of-the-cir-model" id="toc-key-properties-of-the-cir-model" class="nav-link active" data-scroll-target="#key-properties-of-the-cir-model"><strong>Key Properties of the CIR Model</strong></a></li>
+  <li><a href="#applications-of-the-cir-model" id="toc-applications-of-the-cir-model" class="nav-link" data-scroll-target="#applications-of-the-cir-model"><strong>Applications of the CIR Model</strong></a></li>
+  <li><a href="#solution-to-the-cir-sde" id="toc-solution-to-the-cir-sde" class="nav-link" data-scroll-target="#solution-to-the-cir-sde"><strong>Solution to the CIR SDE</strong></a></li>
+  <li><a href="#parameter-estimation" id="toc-parameter-estimation" class="nav-link" data-scroll-target="#parameter-estimation"><strong>Parameter Estimation</strong></a></li>
+  <li><a href="#numerical-simulation-of-the-cir-model" id="toc-numerical-simulation-of-the-cir-model" class="nav-link" data-scroll-target="#numerical-simulation-of-the-cir-model"><strong>Numerical Simulation of the CIR Model</strong></a></li>
+  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset">0. <strong>Load the Dataset</strong></a></li>
+  <li><a href="#estimates-cir-parameters" id="toc-estimates-cir-parameters" class="nav-link" data-scroll-target="#estimates-cir-parameters"><strong>1. Estimates CIR parameters</strong></a></li>
+  <li><a href="#task-2-simulation-and-monte-carlo-pricing" id="toc-task-2-simulation-and-monte-carlo-pricing" class="nav-link" data-scroll-target="#task-2-simulation-and-monte-carlo-pricing"><strong>Task 2: Simulation and Monte Carlo Pricing</strong></a></li>
   <li><a href="#task-3-analytical-bond-pricing" id="toc-task-3-analytical-bond-pricing" class="nav-link" data-scroll-target="#task-3-analytical-bond-pricing"><strong>Task 3: Analytical Bond Pricing</strong></a></li>
   <li><a href="#task-4-yield-curve-and-parameter-analysis" id="toc-task-4-yield-curve-and-parameter-analysis" class="nav-link" data-scroll-target="#task-4-yield-curve-and-parameter-analysis"><strong>Task 4: Yield Curve and Parameter Analysis</strong></a></li>
   </ul>
@@ -226,7 +233,182 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math display">\[dr_t = a(b-r_t)dt + \sigma \sqrt{r_t}dW_t\]</span> Where: - $ r_t $ is the interest rate at time ( t ) - $ a $ is the speed of mean reversion - $ b $ is the long-term mean level of the interest rate - $ $ is the volatility of the interest rate - $ W_t $ is a standard Wiener process (Brownian motion) ### <strong>Key Properties of the CIR Model</strong> 1. <strong>Mean Reversion</strong>: The term $ a(b - r_t) $ ensures that the interest rate tends to revert to the long-term mean $ b $ over time. 2. <strong>Non-Negativity</strong>: The square root term $ $ ensures that the interest rate remains non-negative, provided that the Feller condition $ 2ab ^2 $ is satisfied. 3. <strong>Volatility Structure</strong>: The volatility of the interest rate is proportional to the square root of the current rate, meaning that volatility decreases as the interest rate approaches zero. ### <strong>Applications of the CIR Model</strong> - <strong>Interest Rate Modeling</strong>: The CIR model is widely used to model the evolution of interest rates over time in financial markets. - <strong>Bond Pricing</strong>: It is used to price interest rate derivatives and bonds, particularly those with embedded options. - <strong>Risk Management</strong>: The model helps in assessing the risk associated with interest rate movements for financial institutions. ### <strong>Solution to the CIR SDE</strong> The CIR model has a known closed-form solution for the transition density of $ r_t $. The distribution of $ r_t $ given $ r_0 $ is a non-central chi-squared distribution. Specifically, if $ r_0 $ is the initial interest rate, then: <span class="math display">\[ r_t \sim \frac{\sigma^2(1 - e^{-at})}{4a} \chi^2_{d}(\lambda) \]</span> Where: - $ d = $ is the degrees of freedom - $ = $ is the non-centrality parameter ### <strong>Parameter Estimation</strong> Parameters $ a $, $ b $, and $ $ can be estimated using historical interest rate data through methods such as Maximum Likelihood Estimation (MLE) or the Generalized Method of Moments (GMM). ### <strong>Numerical Simulation of the CIR Model</strong> To simulate paths of the CIR model, one can use the Euler-Maruyama method or more advanced techniques like the Milstein scheme. A simple Euler discretization is given by: <span class="math display">\[ r_{t+\Delta t} = r_t + a(b - r_t)\Delta t + \sigma \sqrt{r_t} \sqrt{\Delta t} Z \]</span> Where $ Z $ is a standard normal random variable.</p>
+<p><span class="math display">\[dr_t = a(b-r_t)dt + \sigma \sqrt{r_t}dW_t\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(r_t\)</span> is the interest rate at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(a\)</span> is the speed of mean reversion</li>
+<li><span class="math inline">\(b\)</span> is the long-term mean level of the interest rate</li>
+<li><span class="math inline">\(\sigma\)</span> is the volatility of the interest rate</li>
+<li><span class="math inline">\(W_t\)</span> is a standard Wiener process (Brownian motion)</li>
+</ul>
+<section id="key-properties-of-the-cir-model" class="level3">
+<h3 class="anchored" data-anchor-id="key-properties-of-the-cir-model"><strong>Key Properties of the CIR Model</strong></h3>
+<ol type="1">
+<li><strong>Mean Reversion</strong>: The term <span class="math inline">\(a(b - r_t)\)</span> ensures that the interest rate tends to revert to the long-term mean <span class="math inline">\(b\)</span> over time.</li>
+<li><strong>Non-Negativity</strong>: The square root term <span class="math inline">\(\sqrt{r_t}\)</span> ensures that the interest rate remains non-negative, provided that the Feller condition <span class="math inline">\(2ab \geq \sigma^2\)</span> is satisfied.</li>
+<li><strong>Volatility Structure</strong>: The volatility of the interest rate is proportional to the square root of the current rate, meaning that volatility decreases as the interest rate approaches zero.</li>
+</ol>
+</section>
+<section id="applications-of-the-cir-model" class="level3">
+<h3 class="anchored" data-anchor-id="applications-of-the-cir-model"><strong>Applications of the CIR Model</strong></h3>
+<ul>
+<li><strong>Interest Rate Modeling</strong>: The CIR model is widely used to model the evolution of interest rates over time in financial markets.</li>
+<li><strong>Bond Pricing</strong>: It is used to price interest rate derivatives and bonds, particularly those with embedded options.</li>
+<li><strong>Risk Management</strong>: The model helps in assessing the risk associated with interest rate movements for financial institutions.</li>
+</ul>
+</section>
+<section id="solution-to-the-cir-sde" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-the-cir-sde"><strong>Solution to the CIR SDE</strong></h3>
+<p>The CIR model has a known closed-form solution for the transition density of <span class="math inline">\(r_t\)</span>. The distribution of <span class="math inline">\(r_t\)</span> given <span class="math inline">\(r_0\)</span> is a non-central chi-squared distribution. Specifically, if <span class="math inline">\(r_0\)</span> is the initial interest rate, then: <span class="math display">\[r_t \sim \frac{\sigma^2(1 - e^{-at})}{4a} \chi^2_{d}(\lambda)\]</span></p>
+<p>Where: - $d = $ is the degrees of freedom - <span class="math inline">\(\lambda = \frac{4a e^{-at} r_0}{\sigma^2(1 - e^{-at})}\)</span> is the non-centrality parameter</p>
+</section>
+<section id="parameter-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-estimation"><strong>Parameter Estimation</strong></h3>
+<p>Parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(\sigma\)</span> can be estimated using historical interest rate data through methods such as Maximum Likelihood Estimation (MLE) or the Generalized Method of Moments (GMM).</p>
+</section>
+<section id="numerical-simulation-of-the-cir-model" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-simulation-of-the-cir-model"><strong>Numerical Simulation of the CIR Model</strong></h3>
+<p>To simulate paths of the CIR model, one can use the Euler-Maruyama method or more advanced techniques like the Milstein scheme. A simple Euler discretization is given by: <span class="math display">\[r_{t+\Delta t} = r_t + a(b - r_t)\Delta t + \sigma \sqrt{r_t} \sqrt{\Delta t} Z\]</span> Where <span class="math inline">\(Z\)</span> is a standard normal random variable.</p>
+</section>
+<section id="load-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-dataset">0. <strong>Load the Dataset</strong></h3>
+<div id="4a1a544d" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fa64210f" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>symbol <span class="op">=</span> <span class="st">"^TNX"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">"2012-01-01"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">"2025-01-31"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> yf.download(symbol, start<span class="op">=</span>start_date, end<span class="op">=</span>end_date)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[<span class="st">'Close'</span>].dropna()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>rate <span class="op">=</span> data.values</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.plot(data, label<span class="op">=</span><span class="st">'10-Year Treasury Yield'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'10-Year Treasury Yield Over Time'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Yield'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>YF.download() has changed argument auto_adjust default to True</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cir_model_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimates-cir-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="estimates-cir-parameters"><strong>1. Estimates CIR parameters</strong></h3>
+<p><span class="math display">\[ r_{t+\Delta t} - r_t = a(b - r_t)\Delta t + \sigma \sqrt{r_t} \sqrt{\Delta t} \mathcal{N}(0,\Delta t) \]</span></p>
+<p><span class="math display">\[\dfrac{r_{t+\Delta t} - r_t}{\sqrt{r_t}} = \dfrac{ab \Delta t}{\sqrt{r_t}}-a\sqrt{r_t} \Delta t + \sigma \sqrt{\Delta t} \mathcal{N}(0,1)\]</span></p>
+<p>This can be write the linear regression: <span class="math display">\[y_i = \beta_1 z_{1,i} + \beta_2 z_{2,i}+ \epsilon_i\]</span> Where : <span class="math display">\[\begin{aligned}
+&amp; y_i = \dfrac{r_{t+\Delta t} - r_t}{\sqrt{r_t}} \\
+&amp; \beta_1 = ab \\
+&amp; \beta_2 = -a \\
+&amp; z_{1,i} = \dfrac{\Delta t}{\sqrt{r_t}} \\
+&amp; z_{2,i} = \sqrt{r_t}\Delta t \\
+&amp; \epsilon_i = \sigma \sqrt{\Delta t} \mathcal{N}(0,1)
+\end{aligned}\]</span></p>
+<div id="3c109d43" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ols_cir(rates, dt):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    OLS calibration of CIR model:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    dr_t = a(b - r_t)dt + sigma sqrt(r_t) dW_t</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    rates <span class="op">=</span> np.asarray(rates)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Keep only strictly positive rates</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> rates[:<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> rates[:<span class="op">-</span><span class="dv">1</span>][mask]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    rt <span class="op">=</span> rates[<span class="dv">1</span>:][mask]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dependent variable</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> (rt <span class="op">-</span> rs) <span class="op">/</span> np.sqrt(rs)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Regressors</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> dt <span class="op">/</span> np.sqrt(rs)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> dt <span class="op">*</span> np.sqrt(rs)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.column_stack((z1, z2))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OLS regression without intercept</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    beta1, beta2 <span class="op">=</span> model.coef_</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recover CIR parameters</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    a_hat <span class="op">=</span> <span class="op">-</span>beta2</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    b_hat <span class="op">=</span> beta1 <span class="op">/</span> a_hat</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Residuals and sigma</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    residuals <span class="op">=</span> y <span class="op">-</span> model.predict(X)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    sigma_hat <span class="op">=</span> np.std(residuals, ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(dt)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a_hat, b_hat, sigma_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cdabb4ee" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">252</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rates <span class="op">=</span> rate<span class="op">/</span><span class="dv">100</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>a, b, sigma <span class="op">=</span> ols_cir(rates, dt)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Result of Estimation : "</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean reversion: a = "</span>,a)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Long-term mean: b = "</span>, b)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatility : sigma ="</span>,sigma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Result of Estimation : 
+Mean reversion: a =  0.32924807482277707
+Long-term mean: b =  0.0302445410181786
+Volatility : sigma = 0.05686958532836494</code></pre>
+</div>
+</div>
+<div id="6e3a7f04" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(rate<span class="op">/</span><span class="dv">100</span>, label<span class="op">=</span><span class="st">'10-Year Treasury Yield'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span> b, linestyle<span class="op">=</span><span class="st">'--'</span>,label <span class="op">=</span> <span class="ss">f'Long-term mean b(</span><span class="sc">{</span>b<span class="sc">:.2f}</span><span class="ss">)'</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'10-Year Treasury Yield Over Time'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Yield'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha <span class="op">=</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cir_model_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="task-2-simulation-and-monte-carlo-pricing" class="level3">
 <h3 class="anchored" data-anchor-id="task-2-simulation-and-monte-carlo-pricing"><strong>Task 2: Simulation and Monte Carlo Pricing</strong></h3>
 <ul>
@@ -234,32 +416,28 @@ window.Quarto = {
 <ul>
 <li>Interval <span class="math inline">\([0,T]\)</span> : step size <span class="math inline">\(\Delta t = \frac{T}{N}\)</span>, where <span class="math inline">\(N\)</span> is the number of time steps.</li>
 </ul>
-<p>For the <strong>CIR model</strong>, the discretized form is: <span class="math display">\[ r_{t+\Delta t} = r_t + a(b - r_t)\Delta t + \sigma \sqrt{r_t} \sqrt{\Delta t} Z \]</span> Where $ Z N(0,1) $ is a standard normal random variable.</p></li>
+<p>For the <strong>CIR model</strong>, the discretized form is: <span class="math display">\[ r_{t+\Delta t} = r_t + a(b - r_t)\Delta t + \sigma \sqrt{r_t} \sqrt{\Delta t} Z \]</span> Where <span class="math inline">\(Z \sim N(0,1)\)</span> is a standard normal random variable.</p></li>
 </ul>
-<div id="8126b8ba" class="cell" data-execution_count="3">
+<div id="8126b8ba" class="cell" data-execution_count="10">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_cir_paths(r0, a, b, sigma, T, dt, n_paths):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    n_steps <span class="op">=</span> <span class="bu">int</span>(T <span class="op">/</span> dt)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    rates <span class="op">=</span> np.zeros((n_steps <span class="op">+</span> <span class="dv">1</span>, n_paths))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    rates[<span class="dv">0</span>] <span class="op">=</span> r0</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Standard Normal Random Variables</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        dz <span class="op">=</span> np.random.normal(<span class="dv">0</span>, np.sqrt(dt), n_paths)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># CIR SDE: dr = a(b - r)dt + sigma * sqrt(r) * dW</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We use np.maximum to ensure r doesn't go negative in the sqrt</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        previous_r <span class="op">=</span> rates[t<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        drift <span class="op">=</span> a <span class="op">*</span> (b <span class="op">-</span> previous_r) <span class="op">*</span> dt</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        diffusion <span class="op">=</span> sigma <span class="op">*</span> np.sqrt(np.maximum(previous_r, <span class="dv">0</span>)) <span class="op">*</span> dz</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        rates[t] <span class="op">=</span> previous_r <span class="op">+</span> drift <span class="op">+</span> diffusion</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rates</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_cir_paths(r0, a, b, sigma, T, dt, n_paths):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    n_steps <span class="op">=</span> <span class="bu">int</span>(T <span class="op">/</span> dt)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    rates <span class="op">=</span> np.zeros((n_steps <span class="op">+</span> <span class="dv">1</span>, n_paths))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    rates[<span class="dv">0</span>] <span class="op">=</span> r0</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Standard Normal Random Variables</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        dz <span class="op">=</span> np.random.normal(<span class="dv">0</span>, np.sqrt(dt), n_paths)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># CIR SDE: dr = a(b - r)dt + sigma * sqrt(r) * dW</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We use np.maximum to ensure r doesn't go negative in the sqrt</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        previous_r <span class="op">=</span> rates[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        drift <span class="op">=</span> a <span class="op">*</span> (b <span class="op">-</span> previous_r) <span class="op">*</span> dt</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        diffusion <span class="op">=</span> sigma <span class="op">*</span> np.sqrt(np.maximum(previous_r, <span class="dv">0</span>)) <span class="op">*</span> dz</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        rates[t] <span class="op">=</span> previous_r <span class="op">+</span> drift <span class="op">+</span> diffusion</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rates</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ul>
@@ -279,82 +457,82 @@ window.Quarto = {
 </ul>
 <p><span class="math display">\[ P_{MC}(0,T) \approx \frac{1}{N} \sum_{i=1}^{N} D_i \]</span></p></li>
 </ul>
-<div id="ef481d80" class="cell" data-execution_count="4">
+<div id="ef481d80" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> price_bond_mc(rates, dt):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Integral of r_t dt using the trapezoidal rule or simple sum</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    integral_r <span class="op">=</span> np.<span class="bu">sum</span>(rates[:<span class="op">-</span><span class="dv">1</span>], axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> dt</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average of the discount factors</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(np.exp(<span class="op">-</span>integral_r))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> price_bond_mc(rates, dt):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Integral of r_t dt using the trapezoidal rule or simple sum</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    integral_r <span class="op">=</span> np.<span class="bu">sum</span>(rates[:<span class="op">-</span><span class="dv">1</span>], axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> dt</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average of the discount factors</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(np.exp(<span class="op">-</span>integral_r))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="f24dcd86" class="cell">
+<div id="f24dcd86" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.05</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.03</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> <span class="fl">0.03</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>T_max <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">252</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="bu">int</span>(T_max <span class="op">/</span> dt)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>time_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, T_max, n_steps <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>n_paths <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> simulate_cir_paths(r0, a, b, sigma, T, dt, n_paths)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>mc_price <span class="op">=</span> price_bond_mc(paths, dt)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monte Carlo Bond Price (5Y): </span><span class="sc">{</span>mc_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a = 0.2</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># b = 0.05</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sigma = 0.03</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> rates[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>T_max <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">252</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="bu">int</span>(T_max <span class="op">/</span> dt)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>time_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, T_max, n_steps <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>n_paths <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> simulate_cir_paths(r0, a, b, sigma, T_max, dt, n_paths)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>mc_price <span class="op">=</span> price_bond_mc(paths, dt)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monte Carlo Bond Price (10Y): </span><span class="sc">{</span>mc_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Monte Carlo Bond Price (5Y): 0.8288</code></pre>
+<pre><code>Monte Carlo Bond Price (10Y): 0.7090</code></pre>
 </div>
 </div>
-<div id="4dbb0fbc" class="cell">
+<div id="4dbb0fbc" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> simulate_cir_paths(r0, a, b, sigma, T_max, dt, n_paths)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mean_rates <span class="op">=</span> np.mean(paths, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, paths ,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, mean_rates, label<span class="op">=</span><span class="st">'Mean Short Rate'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>b, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Long-term Mean (b=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Short Rate Paths (CIR Model)"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Interest Rate ($r_t$)"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> simulate_cir_paths(r0, a, b, sigma, T_max, dt, n_paths)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mean_rates <span class="op">=</span> np.mean(paths, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, paths ,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, mean_rates, label<span class="op">=</span><span class="st">'Mean Short Rate'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>b, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Long-term Mean (b=</span><span class="sc">{</span>b<span class="sc">:.2f}</span><span class="ss">)'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Short Rate Paths (CIR Model)"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Interest Rate ($r_t$)"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cir_model_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="cir_model_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="60011ced" class="cell">
+<div id="60011ced" class="cell" data-execution_count="83">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the mean of interest rates at each time step</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mean_rates <span class="op">=</span> np.mean(paths, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, mean_rates, label<span class="op">=</span><span class="st">'Mean Short Rate'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>b, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Long-term Mean (b=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mean Short Rate Over Time (CIR Model)"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Mean Interest Rate ($r_t$)"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the mean of interest rates at each time step</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean_rates <span class="op">=</span> np.mean(paths, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(time_grid, mean_rates, label<span class="op">=</span><span class="st">'Mean Short Rate'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>b, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Long-term Mean (b=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mean Short Rate Over Time (CIR Model)"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Mean Interest Rate ($r_t$)"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cir_model_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="cir_model_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -368,84 +546,81 @@ window.Quarto = {
 <li><span class="math display">\[ A(T) = \left( \dfrac{2\gamma e^{(a+\gamma)T/2}}{(a+\gamma)(e^{\gamma T}-1) + 2\gamma} \right)^{\frac{2ab}{\sigma^2}} \]</span></li>
 <li><span class="math display">\[ B(T) = \dfrac{2(e^{\gamma T}-1)}{(a+\gamma)(e^{\gamma T}-1) + 2\gamma} \]</span></li>
 </ul>
-<div id="daa22f26" class="cell">
+<div id="daa22f26" class="cell" data-execution_count="84">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cir_analytical_price(r0, a, b, sigma, T):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> T <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1.0</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> np.sqrt(a<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    exp_g <span class="op">=</span> np.exp(gamma <span class="op">*</span> T)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate B(T)</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    den_b <span class="op">=</span> (gamma <span class="op">+</span> a) <span class="op">*</span> (exp_g <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> gamma</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (exp_g <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> den_b</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate A(T)</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    num_a <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> gamma <span class="op">*</span> np.exp((a <span class="op">+</span> gamma) <span class="op">*</span> T <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> (num_a <span class="op">/</span> den_b)<span class="op">**</span>(<span class="dv">2</span> <span class="op">*</span> a <span class="op">*</span> b <span class="op">/</span> sigma<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">*</span> np.exp(<span class="op">-</span>B <span class="op">*</span> r0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cir_analytical_price(r0, a, b, sigma, T):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> T <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1.0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> np.sqrt(a<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    exp_g <span class="op">=</span> np.exp(gamma <span class="op">*</span> T)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate B(T)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    den_b <span class="op">=</span> (gamma <span class="op">+</span> a) <span class="op">*</span> (exp_g <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> gamma</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (exp_g <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> den_b</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate A(T)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    num_a <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> gamma <span class="op">*</span> np.exp((a <span class="op">+</span> gamma) <span class="op">*</span> T <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> (num_a <span class="op">/</span> den_b)<span class="op">**</span>(<span class="dv">2</span> <span class="op">*</span> a <span class="op">*</span> b <span class="op">/</span> sigma<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">*</span> np.exp(<span class="op">-</span>B <span class="op">*</span> r0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="44b7c221" class="cell" data-execution_count="17">
+<div id="44b7c221" class="cell" data-execution_count="103">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mc_price <span class="op">=</span> price_bond_mc(paths[:, :n_paths], dt)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>analytical_price <span class="op">=</span> cir_analytical_price(r0, a, b, sigma, T_max)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> <span class="bu">abs</span>(mc_price <span class="op">-</span> analytical_price)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monte Carlo Price: </span><span class="sc">{</span>mc_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Analytical Price: </span><span class="sc">{</span>analytical_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Absolute Error: </span><span class="sc">{</span>error<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validation</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mc_price <span class="op">=</span> price_bond_mc(paths[:, :n_paths], dt)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>analytical_price <span class="op">=</span> cir_analytical_price(r0, a, b, sigma, T_max)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> <span class="bu">abs</span>(mc_price <span class="op">-</span> analytical_price)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monte Carlo Price: </span><span class="sc">{</span>mc_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Analytical Price: </span><span class="sc">{</span>analytical_price<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Absolute Error: </span><span class="sc">{</span>error<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Monte Carlo Price: 0.6608
-Analytical Price: 0.6624
-Absolute Error: 0.0016</code></pre>
+<pre><code>Monte Carlo Price: 0.7459
+Analytical Price: 0.7421
+Absolute Error: 0.0038</code></pre>
 </div>
 </div>
 <p><strong>Comparison of Monte Carlo and Analytical Prices</strong></p>
-<div id="05caea3b" class="cell" data-execution_count="18">
+<div id="05caea3b" class="cell" data-execution_count="104">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3: Compare Analytical vs Simulated Prices</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>a_base <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>b_base <span class="op">=</span> <span class="fl">0.05</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>sigma_base <span class="op">=</span> <span class="fl">0.03</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> <span class="fl">0.03</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>T_max <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">252</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="bu">int</span>(T_max <span class="op">/</span> dt)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>time_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, T_max, n_steps <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>n_paths <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>maturities <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>analytical_prices <span class="op">=</span> [cir_analytical_price(r0, a_base, b_base, sigma_base, T) <span class="cf">for</span> T <span class="kw">in</span> maturities]</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Monte Carlo with N=500</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>n_paths_mc <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>full_paths <span class="op">=</span> simulate_cir_paths(r0, a_base, b_base, sigma_base, <span class="dv">10</span>, dt, n_paths_mc)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>mc_prices <span class="op">=</span> []</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> T <span class="kw">in</span> maturities:</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    steps_T <span class="op">=</span> <span class="bu">int</span>(T <span class="op">/</span> dt)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    integral_r <span class="op">=</span> np.<span class="bu">sum</span>(full_paths[:steps_T, :], axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> dt</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    mc_prices.append(np.mean(np.exp(<span class="op">-</span>integral_r)))</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>plt.plot(maturities, analytical_prices, <span class="st">'o-'</span>, label<span class="op">=</span><span class="st">'Analytical Price'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>plt.plot(maturities, mc_prices, <span class="st">'x--'</span>, label<span class="op">=</span><span class="ss">f'Monte Carlo Price (N=</span><span class="sc">{</span>n_paths_mc<span class="sc">}</span><span class="ss">)'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Task 3: Analytical vs. Monte Carlo Bond Prices"</span>)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Maturity (Years)"</span>)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Price"</span>)</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3: Compare Analytical vs Simulated Prices</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> rates[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>T_max <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">252</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="bu">int</span>(T_max <span class="op">/</span> dt)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>time_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, T_max, n_steps <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>n_paths <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>maturities <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>analytical_prices <span class="op">=</span> [cir_analytical_price(r0, a, b, sigma, T) <span class="cf">for</span> T <span class="kw">in</span> maturities]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Monte Carlo with N=500</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>n_paths_mc <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>full_paths <span class="op">=</span> simulate_cir_paths(r0, a, b, sigma, <span class="dv">10</span>, dt, n_paths_mc)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>mc_prices <span class="op">=</span> []</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> T <span class="kw">in</span> maturities:</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    steps_T <span class="op">=</span> <span class="bu">int</span>(T <span class="op">/</span> dt)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    integral_r <span class="op">=</span> np.<span class="bu">sum</span>(full_paths[:steps_T, :], axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> dt</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    mc_prices.append(np.mean(np.exp(<span class="op">-</span>integral_r)))</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.plot(maturities, analytical_prices, <span class="st">'o-'</span>, label<span class="op">=</span><span class="st">'Analytical Price'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.plot(maturities, mc_prices, <span class="st">'x--'</span>, label<span class="op">=</span><span class="ss">f'Monte Carlo Price (N=</span><span class="sc">{</span>n_paths_mc<span class="sc">}</span><span class="ss">)'</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Task 3: Analytical vs. Monte Carlo Bond Prices"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Maturity (Years)"</span>)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Price"</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cir_model_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="cir_model_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -455,24 +630,24 @@ Absolute Error: 0.0016</code></pre>
 <li><p><strong>Observations:</strong> The Monte Carlo prices (marked with ‘x’) align almost perfectly with the analytical prices (the solid line). This confirms that your simulation logic is correct.</p></li>
 <li><p><strong>Trend:</strong> As maturity increases, the bond price decreases. This is intuitive, as a dollar received 10 years from now is worth less today than a dollar received 1 year from now.</p></li>
 </ul>
-<div id="12ba2f58" class="cell" data-execution_count="19">
+<div id="12ba2f58" class="cell" data-execution_count="105">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Camparision dataframe</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>absolute_errors <span class="op">=</span> [<span class="bu">abs</span>(ap <span class="op">-</span> mp) <span class="cf">for</span> ap, mp <span class="kw">in</span> <span class="bu">zip</span>(analytical_prices, mc_prices)]</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maturity (Years)'</span>: maturities,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Analytical Price'</span>: analytical_prices,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f'Monte Carlo Price (N=</span><span class="sc">{</span>n_paths_mc<span class="sc">}</span><span class="ss">)'</span>: mc_prices,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Absolute Error'</span>: absolute_errors</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>comparison_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Camparision dataframe</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>absolute_errors <span class="op">=</span> [<span class="bu">abs</span>(ap <span class="op">-</span> mp) <span class="cf">for</span> ap, mp <span class="kw">in</span> <span class="bu">zip</span>(analytical_prices, mc_prices)]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Maturity (Years)'</span>: maturities,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Analytical Price'</span>: analytical_prices,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f'Monte Carlo Price (N=</span><span class="sc">{</span>n_paths_mc<span class="sc">}</span><span class="ss">)'</span>: mc_prices,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Absolute Error'</span>: absolute_errors</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>comparison_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="105">
 <div>
 
 
@@ -490,72 +665,72 @@ Absolute Error: 0.0016</code></pre>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
-<td>0.968633</td>
-<td>0.968707</td>
-<td>0.000074</td>
+<td>0.962651</td>
+<td>0.962791</td>
+<td>0.000140</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
-<td>0.935192</td>
-<td>0.935387</td>
-<td>0.000195</td>
+<td>0.930391</td>
+<td>0.930399</td>
+<td>0.000009</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
-<td>0.900510</td>
-<td>0.901095</td>
-<td>0.000585</td>
+<td>0.901567</td>
+<td>0.901350</td>
+<td>0.000218</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>4</td>
-<td>0.865241</td>
-<td>0.866004</td>
-<td>0.000763</td>
+<td>0.875132</td>
+<td>0.875351</td>
+<td>0.000219</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>5</td>
-<td>0.829891</td>
-<td>0.830716</td>
-<td>0.000825</td>
+<td>0.850418</td>
+<td>0.851182</td>
+<td>0.000764</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>6</td>
-<td>0.794845</td>
-<td>0.796051</td>
-<td>0.001206</td>
+<td>0.827000</td>
+<td>0.828049</td>
+<td>0.001049</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>7</td>
-<td>0.760391</td>
-<td>0.762064</td>
-<td>0.001673</td>
+<td>0.804604</td>
+<td>0.806411</td>
+<td>0.001806</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
 <td>8</td>
-<td>0.726739</td>
-<td>0.728752</td>
-<td>0.002013</td>
+<td>0.783053</td>
+<td>0.785369</td>
+<td>0.002316</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
 <td>9</td>
-<td>0.694039</td>
-<td>0.696681</td>
-<td>0.002642</td>
+<td>0.762229</td>
+<td>0.764684</td>
+<td>0.002456</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>10</td>
-<td>0.662392</td>
-<td>0.665510</td>
-<td>0.003118</td>
+<td>0.742053</td>
+<td>0.744529</td>
+<td>0.002476</td>
 </tr>
 </tbody>
 </table>
@@ -569,55 +744,55 @@ Absolute Error: 0.0016</code></pre>
 <ul>
 <li><strong>Yield Curve Generation</strong>
 <ul>
-<li>Using the analytical bond pricing formula, generate the yield curve for different maturities $ T $ by calculating the yield $ y(0,T) $: <span class="math display">\[ y(0,T) = -\frac{1}{T} \ln(P(0,T)) \]</span></li>
+<li>Using the analytical bond pricing formula, generate the yield curve for different maturities <span class="math inline">\(T\)</span> by calculating the yield $ y(0,T) $: <span class="math display">\[ y(0,T) = -\frac{1}{T} \ln(P(0,T)) \]</span></li>
 </ul></li>
 <li><strong>Parameter Sensitivity Analysis</strong>
 <ul>
-<li>Analyze how changes in parameters $ a $, $ b $, and $ $ affect the shape of the yield curve.</li>
+<li>Analyze how changes in parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(\sigma\)</span> affect the shape of the yield curve.</li>
 <li>For example, increase/decrease each parameter by a certain percentage and observe the resulting changes in bond prices and yields.</li>
 </ul></li>
 </ul>
-<div id="3d00bb71" class="cell" data-execution_count="20">
+<div id="3d00bb71" class="cell" data-execution_count="110">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 4: Yield Curve and Sensitivity</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>m_yields <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">30</span>, <span class="dv">100</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_yields(a, b, sigma):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    prices <span class="op">=</span> [cir_analytical_price(r0, a, b, sigma, T) <span class="cf">for</span> T <span class="kw">in</span> m_yields]</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(prices) <span class="op">/</span> m_yields</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, b_base, sigma_base), label<span class="op">=</span><span class="st">'Base Case'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Base Yield Curve"</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Maturity"</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Yield"</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, b_base, sigma_base), label<span class="op">=</span><span class="st">'a=0.2'</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(<span class="fl">0.8</span>, b_base, sigma_base), label<span class="op">=</span><span class="st">'a=0.8'</span>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Mean Reversion (a)"</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, b_base, sigma_base), label<span class="op">=</span><span class="st">'b=0.05'</span>)</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, <span class="fl">0.08</span>, sigma_base), label<span class="op">=</span><span class="st">'b=0.08'</span>)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Long-term Mean (b)"</span>)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, b_base, sigma_base), label<span class="op">=</span><span class="st">'$</span><span class="er">\</span><span class="st">sigma=0.03$'</span>)</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a_base, b_base, <span class="fl">0.1</span>), label<span class="op">=</span><span class="st">'$</span><span class="er">\</span><span class="st">sigma=0.10$'</span>)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Volatility ($</span><span class="er">\</span><span class="st">sigma$)"</span>)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 4: Yield Curve and Sensitivity</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>m_yields <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">30</span>, <span class="dv">100</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_yields(a, b, sigma):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    prices <span class="op">=</span> [cir_analytical_price(r0, a, b, sigma, T) <span class="cf">for</span> T <span class="kw">in</span> m_yields]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(prices) <span class="op">/</span> m_yields</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, b, sigma), label<span class="op">=</span><span class="st">'Base Case'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Base Yield Curve"</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Maturity"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Yield"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, b, sigma), label<span class="op">=</span><span class="ss">f'a=</span><span class="sc">{</span>a<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(<span class="dv">2</span><span class="op">*</span>a, b, sigma), label<span class="op">=</span><span class="st">'a=0.8'</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Mean Reversion (a)"</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, b, sigma), label<span class="op">=</span><span class="ss">f'b=</span><span class="sc">{</span>b<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, <span class="dv">2</span><span class="op">*</span>b, sigma), label<span class="op">=</span><span class="st">'b=0.08'</span>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Long-term Mean (b)"</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, b, sigma), label<span class="op">=</span><span class="ss">f'$</span><span class="er">\</span><span class="ss">sigma=</span><span class="sc">{</span>sigma<span class="sc">:.2f}</span><span class="ss">$'</span>)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>plt.plot(m_yields, get_yields(a, b, <span class="dv">2</span><span class="op">*</span>sigma), label<span class="op">=</span><span class="st">'$</span><span class="er">\</span><span class="st">sigma=0.10$'</span>)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensitivity to Volatility ($</span><span class="er">\</span><span class="st">sigma$)"</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cir_model_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="cir_model_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -627,7 +802,7 @@ Absolute Error: 0.0016</code></pre>
 <li><p><strong>Base Case:</strong> A typical upward-sloping yield curve starting at <span class="math inline">\(r_0 = 0.03\)</span> and converging toward the mean.</p></li>
 <li><p><strong>Sensitivity to <span class="math inline">\(a\)</span> (Speed):</strong> A higher <span class="math inline">\(a\)</span> (0.8 vs 0.2) causes the curve to reach the long-term mean much faster, resulting in a steeper initial slope.</p></li>
 <li><p><strong>Sensitivity to <span class="math inline">\(b\)</span> (Mean):</strong> Increasing <span class="math inline">\(b\)</span> shifts the entire “long end” of the curve upward, as the market expects rates to be higher in the distant future.</p></li>
-<li><p><strong>Sensitivity to <span class="math inline">\(\sigma\)</span> (Volatility):</strong> Higher volatility actually creates a downward pressure on the yield curve for long maturities. This is due to “convexity bias”—as uncertainty increases, the value of the bond’s floor (it can’t go below zero) becomes more valuable, raising the bond price and thus lowering the yield.</p></li>
+<li><p><strong>Sensitivity to <span class="math inline">\(\sigma\)</span> (Volatility):</strong> Higher volatility actually creates a downward pressure on the yield curve for long maturities. This is due to “convexity bias” as uncertainty increases, the value of the bond’s floor (it can’t go below zero) becomes more valuable, raising the bond price and thus lowering the yield.</p></li>
 </ol>
 
 

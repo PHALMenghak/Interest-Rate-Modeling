@@ -1,0 +1,58 @@
+---
+title: "Cox-Ingersoll-Ross (CIR) Model"
+jupyter: python3
+---
+
+## Mathematical Formulation
+
+The CIR model (1985) introduces a square-root term in the diffusion component to prevent negative interest rates:
+
+$$
+dr_t = \kappa(\theta - r_t)dt + \sigma \sqrt{r_t} dW_t
+$$
+
+The Feller condition, $2\kappa\theta > \sigma^2$, ensures that the rate remains strictly positive.
+
+## Python Simulation
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. Set Parameters
+r0 = 0.05
+theta = 0.08
+kappa = 0.6
+sigma = 0.15 # Higher sigma to test boundaries
+T = 10.0
+dt = 0.005
+N = int(T / dt)
+num_paths = 5
+
+# 2. Simulation Loop
+t = np.linspace(0, T, N+1)
+rates = np.zeros((N+1, num_paths))
+rates[0, :] = r0
+
+np.random.seed(101)
+
+for i in range(1, N+1):
+    # Ensure the term under sqrt is non-negative
+    r_prev = np.maximum(rates[i-1, :], 0)
+    
+    dr = kappa * (theta - r_prev) * dt + \
+         sigma * np.sqrt(r_prev) * np.sqrt(dt) * np.random.normal(size=num_paths)
+    
+    rates[i, :] = r_prev + dr
+
+# 3. Visualization
+plt.figure(figsize=(10, 6))
+plt.plot(t, rates, lw=1.5)
+plt.axhline(theta, color='r', linestyle='--', label='Theta')
+plt.title('CIR Model Simulation')
+plt.xlabel('Time (Years)')
+plt.ylabel('Interest Rate')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+```

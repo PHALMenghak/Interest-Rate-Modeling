@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Interest Rate Modeling"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: vasicek_model.ipynb
+        text: Vasicek Model
+      - href: cir_model.ipynb
+        text: CIR Model
+      - about.qmd
+    right:
+      - icon: github
+        href: https://github.com
+        text: Source
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+    code-fold: show
+    html-math-method: mathjax

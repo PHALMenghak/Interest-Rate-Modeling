@@ -1,0 +1,31 @@
+---
+title: "Interest Rate Modeling"
+subtitle: "Stochastic Calculus in Quantitative Finance"
+---
+
+## Overview
+
+Welcome to **QuantRates**. This project explores short-rate models used in quantitative finance to simulate the evolution of interest rates over time.
+
+Understanding the behavior of the instantaneous spot rate, $r_t$, is crucial for pricing fixed-income derivatives, such ad bonds and swaptions.
+
+
+### General Diffusion Process
+
+Most one-factor short-rate models follow a Stochastic Differential Equation (SDE) of the form:
+
+$$
+dr_t = \mu(r_t, t)dt + \sigma(r_t, t)dW_t
+$$
+
+Where:
+
+-   $r_t$: The instantaneous short rate.
+-   $\mu(r_t, t)$: The drift term (deterministic trend).
+-   $\sigma(r_t, t)$: The diffusion term (volatility).
+-   $W_t$: A Standard Brownian Motion (Wiener Process).
+
+### Models Covered
+
+1.  **[The Vasicek Model](vasicek.qmd)**: A model allowing for mean reversion, though it allows negative interest rates.
+2.  **[The CIR Model](cir.qmd)**: An extension that precludes negative interest rates by scaling volatility with the square root of the rate.
